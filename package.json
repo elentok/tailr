@@ -8,6 +8,9 @@
     "email": "3david@gmail.com",
     "url": "http://www.elentok.com"
   },
+  "bin": {
+    "tailr": "./bin/tailr"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/elentok/tailr.git"
