@@ -7,8 +7,18 @@ Installation
 =============
 
 ```bash
-sudo npm install -g tailr
+npm install -g tailr
 ```
+
+to add zsh completions:
+
+```bash
+tailr completions >> ~/.zshrc
+```
+
+**NOTE:** If you're using the completions and you get a warning about insecure directories
+it's because the owner of the directory ".../node/.../lib/node_modules/tailr/completions"
+should be either the root user or the current user.
 
 Configuration
 ==============
@@ -37,3 +47,12 @@ tailr list
 tailr tail my_remote_log
 
 ```
+
+Changelog
+=========
+
+0.1.1 (2013-02-04)
+-------------------
+
+* Added zsh completions
+
