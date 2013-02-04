@@ -1,7 +1,33 @@
 {
   "name": "tailr",
   "description": "allows tailing remote files",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "homepage": "https://github.com/elentok/tailr",
+  "author": {
+    "name": "David Elentok",
+    "email": "3david@gmail.com",
+    "url": "http://www.elentok.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elentok/tailr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elentok/tailr/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/elentok/tailr/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/tailr.coffee",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script --reporter spec"
+  },
   "dependencies": {
     "nomnom": "*"
   },
