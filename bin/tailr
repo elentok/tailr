@@ -2,13 +2,13 @@
 
 nomnom = require 'nomnom'
 Tailr = require '../lib/tailr'
+path = require 'path'
 
 nomnom.command('list')
   .callback (options) ->
     tailr = new Tailr()
-    console.log "Available logs:"
-    for own log, data of tailr.getLogs()
-      console.log "- #{log}"
+    logNames = (key for own key of tailr.getLogs())
+    console.log logNames.join(' ')
   .help("list all available log files from ~/.tailr.json")
 
 nomnom.command('tail')
@@ -19,8 +19,14 @@ nomnom.command('tail')
   .callback (options) ->
     tailr = new Tailr()
     tailr.tail(options.log)
-  #.help("tails a given log file")
+  .help("tails a given log file")
 
+nomnom.command('completions')
+  .callback ->
+    dir = path.resolve(path.join(__dirname, '..', 'completions'))
+    console.log "fpath=(#{dir} $fpath)"
+    console.log "compinit"
+  .help("shows the completion code to add to .zshrc")
 
 
 nomnom.parse()
