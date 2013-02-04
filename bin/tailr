@@ -1,0 +1,26 @@
+#!/usr/bin/env coffee
+
+nomnom = require 'nomnom'
+Tailr = require '../lib/tailr'
+
+nomnom.command('list')
+  .callback (options) ->
+    tailr = new Tailr()
+    console.log "Available logs:"
+    for own log, data of tailr.getLogs()
+      console.log "- #{log}"
+  .help("list all available log files from ~/.tailr.json")
+
+nomnom.command('tail')
+  .option 'log',
+    position: 1,
+    help: 'The name of the logfile to tail'
+    metavar: 'LOGFILE'
+  .callback (options) ->
+    tailr = new Tailr()
+    tailr.tail(options.log)
+  #.help("tails a given log file")
+
+
+
+nomnom.parse()

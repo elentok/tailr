@@ -3,8 +3,12 @@
   "description": "allows tailing remote files",
   "version": "0.0.1",
   "dependencies": {
-    "commander": "*"
+    "nomnom": "*"
   },
   "devDependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "sinon": "*",
+    "sinon-chai": "*"
   }
 }
