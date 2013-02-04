@@ -51,6 +51,11 @@ tailr tail my_remote_log
 Changelog
 =========
 
+0.1.2 (2013-02-04)
+-------------------
+
+* Added highlighting
+
 0.1.1 (2013-02-04)
 -------------------
 
