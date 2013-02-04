@@ -3,6 +3,13 @@ Tailr
 
 Quickly tail local and remote files
 
+Installation
+=============
+
+```bash
+sudo npm install -g tailr
+```
+
 Configuration
 ==============
 
