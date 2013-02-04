@@ -4,6 +4,8 @@ commander = require 'commander'
 Tailr = require '../lib/tailr'
 path = require 'path'
 
+list = (value) -> value.split(',')
+
 commander.command('list')
   .description('lists all logs in ~/.tailr.json')
   .action ->
@@ -11,15 +13,13 @@ commander.command('list')
     logNames = (key for own key of tailr.getLogs())
     console.log logNames.join(' ')
 
-commander.command('tail [log]')
+commander.command('tail <log>')
   .description("tails a given log file")
-  .action (log) ->
-    if log?
-      tailr = new Tailr()
-      tailr.tail(log)
-    else
-      console.log "Missing 'log' argument, " +
-        "run 'tailr list' to see available logs"
+  .option('-H, --highlight <string>',
+    'Highlights the string in the output (e.g. "-H word1,word2=blue,word3=yellow"', list)
+  .action (log, options) ->
+    tailr = new Tailr(wordsToHighlight: options.highlight)
+    tailr.tail(log)
 
 commander.command('completions')
   .description("shows the completion code to add to .zshrc")

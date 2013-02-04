@@ -2,13 +2,15 @@ fs = require 'fs'
 path = require 'path'
 
 Log = require './log'
+Highlighter = require './highlighter'
 
 
 module.exports = class Tailr
   constructor: (@options = {}) ->
     @_config = null
     @options.config_path or= path.join(process.env['HOME'], '.tailr.coffee')
-  
+    @options.wordsToHighlight or= []
+
   getLogs: ->
     @_getConfig().logs
 
@@ -23,12 +25,22 @@ module.exports = class Tailr
   tail: (logName) ->
     logOptions = @_getConfig().logs[logName]
     if logOptions?
+      logOptions.highlighter = @_createHighlighter()
       log = new Log(logOptions)
       log.tail()
     else
       console.log "Invalid log name '#{logName}', " +
        "use 'tailr list' to see all available logs"
 
-
-    
+  _createHighlighter: ->
+    highlights =
+      "^.*error.*$": 'red'
+    for word in @options.wordsToHighlight
+      if word.indexOf('=') != -1
+        [word, color] = word.split('=')
+      else
+        color = 'green'
+      highlights[word] = color
+    console.log highlights
+    new Highlighter(highlights)
 

@@ -27,5 +27,8 @@ module.exports = class Log
     console.log "Running: #{cmd}"
     console.log "======================================="
     proc = exec(cmd)
-    proc.stdout.on 'data', (data) ->
-      process.stdout.write data.toString('utf-8')
+    proc.stdout.on 'data', (data) =>
+      data = data.toString('utf-8')
+      if @options.highlighter?
+        data = @options.highlighter.highlight(data)
+      process.stdout.write data

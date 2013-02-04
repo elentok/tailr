@@ -32,7 +32,8 @@
     "test": "mocha --compilers coffee:coffee-script --reporter spec"
   },
   "dependencies": {
-    "commander": "*"
+    "commander": "*",
+    "cli-color": "*"
   },
   "devDependencies": {
     "mocha": "*",
