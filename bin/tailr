@@ -1,32 +1,43 @@
 #!/usr/bin/env coffee
 
-commander = require 'commander'
+nomnom = require 'nomnom'
 Tailr = require '../lib/tailr'
 path = require 'path'
 
 list = (value) -> value.split(',')
 
-commander.command('list')
-  .description('lists all logs in ~/.tailr.json')
-  .action ->
+nomnom.colors()
+  .script('tailr')
+
+nomnom.command('list')
+  .help('lists all logs in ~/.tailr.json')
+  .callback ->
     tailr = new Tailr()
     logNames = (key for own key of tailr.getLogs())
     console.log logNames.join(' ')
 
-commander.command('tail <log>')
-  .description("tails a given log file")
-  .option('-H, --highlight <string>',
-    'Highlights the string in the output (e.g. "-H word1,word2=blue,word3=yellow"', list)
-  .action (log, options) ->
+nomnom.command('tail')
+  .help("tails a given log file")
+  .option('log',
+    position: 1
+    required: true
+    help: 'the name of the logfile')
+  .option('highlight',
+    position: 2
+    list: true
+    help: 'words to highlight (e.g "word1 word2=blue word3=yellow")')
+  .callback (options) ->
     tailr = new Tailr(wordsToHighlight: options.highlight)
-    tailr.tail(log)
+    tailr.tail(options.log)
 
-commander.command('completions')
-  .description("shows the completion code to add to .zshrc")
-  .action ->
+nomnom.command('completions')
+  .help("shows the completion code to add to .zshrc")
+  .callback ->
     dir = path.resolve(path.join(__dirname, '..', 'completions'))
     console.log "fpath=(#{dir} $fpath)"
     console.log "compinit"
   
-commander.parse(process.argv)
-commander.help() if commander.args.length is 0
+if nomnom.parse()._.length == 0
+  console.log nomnom.getUsage()
+
+
