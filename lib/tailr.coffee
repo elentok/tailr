@@ -35,11 +35,12 @@ module.exports = class Tailr
   _createHighlighter: ->
     highlights =
       "^.*error.*$": 'red'
+      "err(or)?": 'red,_'
     for word in @options.wordsToHighlight
       if word.indexOf('=') != -1
         [word, color] = word.split('=')
       else
-        color = 'green'
+        color = 'green,_'
       highlights[word] = color
     console.log highlights
     new Highlighter(highlights)
