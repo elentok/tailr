@@ -1,6 +1,8 @@
 Tailr
 =====
 
+[![Build Status](https://travis-ci.org/elentok/tailr.png?branch=master)](https://travis-ci.org/elentok/tailr)
+
 Quickly tail local and remote files
 
 Installation
