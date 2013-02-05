@@ -15,7 +15,7 @@ npm install -g tailr
 to add zsh completions:
 
 ```bash
-tailr completions >> ~/.zshrc
+tailr --completions >> ~/.zshrc
 ```
 
 **NOTE:** If you're using the completions and you get a warning about insecure directories
@@ -43,23 +43,30 @@ Usage
 ======
 ```
 # show the names of the logs specified in ~/.tailr.coffee
-tailr list
+tailr --list
 
 # tail a specific log:
-tailr tail my_remote_log
+tailr my_remote_log
 
 # tail and highlight specified expressions:
-tailr tail my_remote_log expr1
-tailr tail my_remote_log expr1=red
-tailr tail my_remote_log expr1=red,bgWhite
-tailr tail my_remote_log expr1=underline
+tailr my_remote_log expr1
+tailr my_remote_log expr1=red
+tailr my_remote_log expr1=red,bgWhite
+tailr my_remote_log expr1=underline
   # you can use "\_" instead of underline:
-tailr tail my_remote_log expr1=_
+tailr my_remote_log expr1=_
 
 ```
 
 Changelog
 =========
+
+0.1.4 (2013-02-04)
+-------------------
+
+* got rid of the "tail" command (you can now use "tailr {log}")
+* "tailr completions" is now "tailr --completions"
+* "tailr list" is now "tailr --list"
 
 0.1.3 (2013-02-04)
 -------------------

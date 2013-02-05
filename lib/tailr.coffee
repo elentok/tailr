@@ -42,6 +42,5 @@ module.exports = class Tailr
       else
         color = 'green,_'
       highlights[word] = color
-    console.log highlights
     new Highlighter(highlights)
 

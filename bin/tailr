@@ -8,36 +8,36 @@ list = (value) -> value.split(',')
 
 nomnom.colors()
   .script('tailr')
-
-nomnom.command('list')
-  .help('lists all logs in ~/.tailr.json')
-  .callback ->
+  
+nomnom.option 'list',
+  abbr: 'l'
+  flag: true
+  help: 'lists all logs in ~/.tailr.coffee and exits'
+  callback: ->
     tailr = new Tailr()
     logNames = (key for own key of tailr.getLogs())
     console.log logNames.join(' ')
 
-nomnom.command('tail')
-  .help("tails a given log file")
-  .option('log',
-    position: 1
-    required: true
-    help: 'the name of the logfile')
-  .option('highlight',
-    position: 2
-    list: true
-    help: 'words to highlight (e.g "word1 word2=blue word3=yellow")')
-  .callback (options) ->
-    tailr = new Tailr(wordsToHighlight: options.highlight)
-    tailr.tail(options.log)
+nomnom.option 'log',
+  position: 0
+  help: 'the name of the logfile'
 
-nomnom.command('completions')
-  .help("shows the completion code to add to .zshrc")
-  .callback ->
+nomnom.option 'highlight',
+  position: 1
+  list: true
+  help: 'words to highlight (e.g "word1 word2=blue word3=yellow")'
+
+nomnom.option 'completions',
+  flag: true
+  help: "shows the completion code to add to .zshrc"
+  callback: ->
     dir = path.resolve(path.join(__dirname, '..', 'completions'))
     console.log "fpath=(#{dir} $fpath)"
     console.log "compinit"
   
-if nomnom.parse()._.length == 0
-  console.log nomnom.getUsage()
+options = nomnom.parse()
 
+if options.log
+  tailr = new Tailr(wordsToHighlight: options.highlight)
+  tailr.tail(options.log)
 

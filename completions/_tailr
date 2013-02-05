@@ -5,19 +5,11 @@ _tailr() {
   typeset -A opt_args
 
   _arguments \
-    '1: :->command'\
-    '*: :->log'
+    '1: :->command'
 
   case $state in
   command)
-    _arguments '1:Commands:(list tail)'
-    ;;
-  *)
-    case $words[2] in
-    tail)
-      compadd "$@" `tailr list`
-    ;;
-    esac
+    _arguments "1:Args:(`tailr --list` --completions -l --list)"
     ;;
   esac
 }
