@@ -14,5 +14,12 @@ describe "Highlighter", ->
           highlighter = new Highlighter('name': 'red')
           output = highlighter.highlight(text)
           expect(output).to.equal "hello, my #{red}name#{reset} is bob"
+          
+      describe "when options are { '^.*name.*$': 'red' }", ->
+        it "{red}returns 'hello, my name is bob'{reset}", ->
+          text = 'hello, my name is bob'
+          highlighter = new Highlighter('^.*name.*$': 'red')
+          output = highlighter.highlight(text)
+          expect(output).to.equal "#{red}hello, my name is bob#{reset}"
 
 
