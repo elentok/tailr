@@ -46,3 +46,5 @@ describe "Log", ->
       username: 'bob',
       filename: '/path/to/file' },
       "ssh bob@myserver -p 1234 \"tail -n 30 -f '/path/to/file'\""
+    it_returns { filename: '/path/to/file', sudo: yes }, "sudo tail -n 30 -f '/path/to/file'"
+    it_returns { filename: '/path/to/file', sudo: no }, "tail -n 30 -f '/path/to/file'"
