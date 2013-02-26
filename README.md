@@ -61,6 +61,11 @@ tailr my_remote_log expr1=_
 Changelog
 =========
 
+0.1.5 (2013-02-26)
+-------------------
+* remove the 0x0e (ascii 14, shift-out) character before console.log
+  (it messes up the terminal).
+
 0.1.4 (2013-02-04)
 -------------------
 
