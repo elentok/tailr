@@ -30,6 +30,10 @@ module.exports = class Log
     proc = exec(cmd)
     proc.stdout.on 'data', (data) =>
       data = data.toString('utf-8')
+      data = Log.cleanOutput(data)
       if @options.highlighter?
         data = @options.highlighter.highlight(data)
       process.stdout.write data
+
+Log.cleanOutput = (text) ->
+  text.replace /\u000e/g, ''

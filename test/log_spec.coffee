@@ -48,3 +48,11 @@ describe "Log", ->
       "ssh bob@myserver -p 1234 \"tail -n 30 -f '/path/to/file'\""
     it_returns { filename: '/path/to/file', sudo: yes }, "sudo tail -n 30 -f '/path/to/file'"
     it_returns { filename: '/path/to/file', sudo: no }, "tail -n 30 -f '/path/to/file'"
+
+  describe "#cleanOutput", ->
+    it "removes the 0x0e / 14 / shift-out characeter", ->
+      output = Log.cleanOutput("bla \u000e and more bla\u000e")
+      expect(output).to.equal "bla  and more bla"
+      
+
+
