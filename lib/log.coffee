@@ -12,8 +12,9 @@ module.exports = class Log
     cmd = "ssh #{user}#{@options.server}#{port}"
 
   getTailCommand: ->
+    lines = @options.lines or 30
     sudo = if !!@options.sudo then 'sudo ' else ''
-    "#{sudo}tail -n 30 -f '#{@options.filename}'"
+    "#{sudo}tail -n #{lines} -f '#{@options.filename}'"
 
   getCommand: ->
     if @isRemote()

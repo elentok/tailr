@@ -18,6 +18,10 @@ nomnom.option 'list',
     logNames = (key for own key of tailr.getLogs())
     console.log logNames.join(' ')
 
+nomnom.option 'lines',
+  abbr: 'n'
+  help: 'parameter for "tail -n"'
+
 nomnom.option 'log',
   position: 0
   help: 'the name of the logfile'
@@ -38,6 +42,8 @@ nomnom.option 'completions',
 options = nomnom.parse()
 
 if options.log
-  tailr = new Tailr(wordsToHighlight: options.highlight)
+  tailr = new Tailr(
+    wordsToHighlight: options.highlight,
+    lines: options.lines)
   tailr.tail(options.log)
 

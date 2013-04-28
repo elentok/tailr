@@ -26,6 +26,7 @@ module.exports = class Tailr
     logOptions = @_getConfig().logs[logName]
     if logOptions?
       logOptions.highlighter = @_createHighlighter()
+      logOptions.lines = @options.lines
       log = new Log(logOptions)
       log.tail()
     else
