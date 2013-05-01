@@ -33,7 +33,8 @@
   },
   "dependencies": {
     "nomnom": "1.5.x",
-    "cli-color": "0.2.x"
+    "cli-color": "0.2.x",
+    "ssh2": "0.2.5"
   },
   "devDependencies": {
     "coffee-script": "1.4.x",
