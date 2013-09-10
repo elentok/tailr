@@ -1,7 +1,7 @@
 {
   "name": "tailr",
   "description": "allows tailing remote files",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "homepage": "https://github.com/elentok/tailr",
   "author": {
     "name": "David Elentok",
