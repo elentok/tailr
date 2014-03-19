@@ -34,10 +34,10 @@
   "dependencies": {
     "nomnom": "1.5.x",
     "cli-color": "0.2.x",
-    "ssh2": "0.2.5"
+    "ssh2": "0.2.5",
+    "coffee-script": "1.4.x"
   },
   "devDependencies": {
-    "coffee-script": "1.4.x",
     "mocha": "1.8.x",
     "chai": "1.5.x",
     "sinon": "1.5.x",
