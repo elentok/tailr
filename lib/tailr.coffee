@@ -37,6 +37,11 @@ module.exports = class Tailr
     highlights =
       "^.*error.*$": 'red'
       "err(or)?": 'red,_'
+
+    if @_getConfig().highlights?
+      for own key, value of @_getConfig().highlights
+        highlights[key] = value
+
     for word in @options.wordsToHighlight
       if word.indexOf('=') != -1
         [word, color] = word.split('=')

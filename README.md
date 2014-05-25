@@ -37,6 +37,9 @@ module.exports =
       filename: '/path/to/file/on/remote/server.log'
     my_local_log:
       filename: '/path/to/local/file'
+
+  highlights:
+    blabla: 'red'
 ```
 
 Usage
